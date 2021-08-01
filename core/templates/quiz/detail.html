@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="my-3">{{ quiz.name }}</h3>
+<p>This quiz has {{ quiz.questions.count }} questions.</p>
+
+<a href="{% url 'question-detail' quiz.pk q1.pk %}">
+    <button class="btn btn-success">Start Quiz</button>
+</a>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load unicorn %}
+
+{% block page_css %}
+<style>
+    .question-text {
+        font-style: italic;
+        font-size: 1.25rem;
+    }
+
+    .custom-control-label {
+        font-size: 1.2rem;
+    }
+
+    .feedback > div {
+        height: 40px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+</style>
+{% endblock page_css %}
+
+{% block content %}
+
+<div class="text-center col-md-4 offset-md-4">
+    <h3 class="my-3">{{ quiz.name }}</h3>
+    <hr />
+    
+    <p class="question-text">#{{question.order }}: {{ question.text }} </p>
+    
+    {% unicorn 'question' qid=question.pk quiz_pk=quiz.pk next_qid=next_question.pk final=is_final_question %}
+</div>
+
+{% endblock content %}

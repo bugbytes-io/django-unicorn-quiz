@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h5 class="mb-3">Welcome to this excellent quiz app</h5>
+<p>Please select from our quizzes below</p>
+
+<ul>
+    {% for quiz in quizzes %}
+        <li class="my-2">
+            <a href="{% url 'quiz-detail' quiz.pk %}">{{ quiz.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

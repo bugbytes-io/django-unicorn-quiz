@@ -1,0 +1,5 @@
+notes.txt
+db.sqlite3
+*.pyc
+__pycache__
+.vscode

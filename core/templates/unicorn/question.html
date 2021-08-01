@@ -1,0 +1,67 @@
+<form>
+
+<div class="feedback">
+    {% if correct is None %}
+    {% elif correct %}
+        <div class="bg-success">That's right!</div>
+    {% elif not correct %}
+    <div class="bg-danger">Nope!</div>
+    {% endif %}
+</div>
+
+<div class="card my-2 id="choice2-card">
+    <div class="custom-control custom-checkbox d-flex align-items-center px-3 py-2">
+        <input
+            unicorn:change="set_answer({{ choices.0.pk }})"
+            type="radio" 
+            name="choice-btn"
+            class="custom-control-input" 
+            id="choice1">
+        <label class="custom-control-label px-2" for="choice1">
+            {{ choices.0.text }}
+        </label>
+    </div>
+</div>
+
+<div class="card my-2" id="choice2-card">
+    <div class="custom-control custom-checkbox d-flex align-items-center px-3 py-2">
+        <input
+            unicorn:change="set_answer({{choices.1.pk}})"
+            type="radio"
+            name="choice-btn"
+            class="custom-control-input"
+            id="choice2">
+        <label class="custom-control-label px-2" for="choice2">
+            {{ choices.1.text }}
+        </label>
+    </div>
+</div>
+
+<p>
+    {% if choice_pk %}
+        <small class="{{ text_color }}"
+        >You have chosen {{ choice_text }}</small>
+    {% endif %}
+</p>
+
+<button
+    unicorn:click.prevent="check_answer" 
+    class="btn btn-success mt-3">Check Answer</button>
+
+<button
+    unicorn:click.prevent="clear" 
+    class="btn btn-warning mt-3">Clear</button>
+    
+    {% if correct is not None %}
+        
+        {% if final %}
+        <a href="{% url 'index' %}">
+            <button type="button" class="btn btn-primary mt-3">Finish!</button>
+        </a>
+        {% else %}
+        <a href="{% url 'question-detail' quiz_pk next_qid %}">
+            <button type="button" class="btn btn-primary mt-3">> Next Question</button>
+        </a>
+        {% endif %}
+    {% endif %}
+</form>
